@@ -1,10 +1,26 @@
-﻿namespace WeatherApp
+﻿using Newtonsoft.Json.Linq;
+using System.Globalization;
+using System.IO;
+
+namespace WeatherApp
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            string key = File.ReadAllText("appsettings.json");
+            string APIKey = JObject.Parse(key).GetValue("APIKey").ToString();
+
+            Console.WriteLine("Please enter your ZipCode");
+            var zipCode = Console.ReadLine();
+
+            var apiCall = $"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&units=imperial&appid={APIKey}";
+
+            Console.WriteLine();
+
+            Console.WriteLine($"It is currently {WeatherMapTemp.GetTemp(apiCall)} degrees F in your loacation");
+            Console.WriteLine("THAT IS TOO COLD!!! MOVE SOUTH");
+
         }
     }
 }
