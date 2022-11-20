@@ -19,7 +19,8 @@ namespace WeatherApp
             Console.WriteLine();
 
             Console.WriteLine($"It is currently {WeatherMapTemp.GetTemp(apiCall)} degrees F in your loacation");
-            Console.WriteLine("THAT IS TOO COLD!!! MOVE SOUTH");
+            
+            Console.WriteLine("If your temp is less that 40 degrees F, YOU NEED TO MOVE SOUTH");
 
         }
     }
